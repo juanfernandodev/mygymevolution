@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    kotlin("kapt")
 }
 
 android {
@@ -30,17 +31,17 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
     buildFeatures {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.3"
+        kotlinCompilerExtensionVersion = "1.5.8"
     }
     packaging {
         resources {
@@ -50,20 +51,32 @@ android {
 }
 
 dependencies {
+    val activityCompose = "1.8.2"
+    val navigationComposeVersion = "2.7.7"
+    val composeBom = platform("androidx.compose:compose-bom:2024.01.00")
+    val composeVersion = "1.6.1"
+    val coreKtx = "1.12.0"
+    val lifecycleRuntime = "2.7.0"
 
-    implementation("androidx.core:core-ktx:1.9.0")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
-    implementation("androidx.activity:activity-compose:1.8.2")
-    implementation(platform("androidx.compose:compose-bom:2023.03.00"))
+    implementation(project(":feature"))
+    implementation("androidx.navigation:navigation-compose:${navigationComposeVersion}")
+    implementation(composeBom)
+    implementation("androidx.compose.runtime:runtime:${composeVersion}")
+    implementation("androidx.compose.runtime:runtime-livedata:${composeVersion}")
+    implementation("androidx.compose.runtime:runtime-rxjava2:${composeVersion}")
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.ui:ui-graphics")
-    implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-    androidTestImplementation(platform("androidx.compose:compose-bom:2023.03.00"))
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4")
+    implementation("androidx.core:core-ktx:${coreKtx}")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:${lifecycleRuntime}")
+    implementation("androidx.activity:activity-compose:${activityCompose}")
+    implementation("androidx.compose.ui:ui-tooling-preview")
+    androidTestImplementation(composeBom)
     debugImplementation("androidx.compose.ui:ui-tooling")
-    debugImplementation("androidx.compose.ui:ui-test-manifest")
+
+}
+
+// Allow references to generated code
+kapt {
+    correctErrorTypes = true
 }

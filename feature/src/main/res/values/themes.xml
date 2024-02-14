@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.MyGymEvolution" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:colorPrimary">#161717</item>
+        <item name="android:colorSecondary">#929090</item>
+        <item name="colorTertiary">#929090</item>
+        <item name="android:colorError">#FF5449</item>
+    </style>
+</resources>
