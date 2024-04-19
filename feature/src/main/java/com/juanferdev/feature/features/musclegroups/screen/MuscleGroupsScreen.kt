@@ -56,7 +56,7 @@ fun MuscleGroupsScreen(muscleGroupViewModel: MuscleGroupsViewModel = viewModel()
 private fun BoxMuscleGroup(muscle: String, modifier: Modifier = Modifier) {
     Box(
         modifier = modifier
-            .background(color = Color.White)
+            .background(color = Color.Black)
             .clickable { }
     ) {
         Icon(
