@@ -19,8 +19,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -28,12 +26,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.juanferdev.feature.features.musclegroups.stateholder.MuscleGroupsViewModel
-import com.juanferdev.feature.features.musclegroups.uistate.MuscleGroupUiState
 
 
 @Composable
 fun MuscleGroupsScreen(muscleGroupViewModel: MuscleGroupsViewModel = viewModel()) {
-    val uiState by muscleGroupViewModel.uiState.collectAsState()
+    val muscleGroups = muscleGroupViewModel.uiState.value
     Surface(
         modifier = Modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.background
@@ -44,7 +41,7 @@ fun MuscleGroupsScreen(muscleGroupViewModel: MuscleGroupsViewModel = viewModel()
                 .fillMaxHeight()
                 .fillMaxWidth()
         ) {
-            items(uiState.listMuscleGroupUiState) { muscleGroup ->
+            items(muscleGroups) { muscleGroup ->
                 BoxMuscleGroup(
                     muscleGroup, modifier = Modifier
                         .height(255.dp)
@@ -56,11 +53,11 @@ fun MuscleGroupsScreen(muscleGroupViewModel: MuscleGroupsViewModel = viewModel()
 }
 
 @Composable
-private fun BoxMuscleGroup(muscle: MuscleGroupUiState, modifier: Modifier = Modifier) {
+private fun BoxMuscleGroup(muscle: String, modifier: Modifier = Modifier) {
     Box(
         modifier = modifier
             .background(color = Color.White)
-            .clickable { /*todo: openMuscleGroup*/ }
+            .clickable { }
     ) {
         Icon(
             imageVector = Icons.Filled.Check,
@@ -70,7 +67,7 @@ private fun BoxMuscleGroup(muscle: MuscleGroupUiState, modifier: Modifier = Modi
                 .fillMaxSize()
         )
         Text(
-            muscle.name,
+            muscle,
             fontSize = 16.sp,
             modifier = modifier.wrapContentHeight(Alignment.Bottom)
         )

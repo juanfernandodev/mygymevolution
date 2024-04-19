@@ -1,2 +1,4 @@
 <resources>¿
+
+    <string name="title_activity_home">HomeActivity</string>
 </resources>
