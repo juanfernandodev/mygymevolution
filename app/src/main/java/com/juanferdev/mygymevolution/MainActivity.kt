@@ -1,19 +1,14 @@
 package com.juanferdev.mygymevolution
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import com.juanferdev.mygymevolution.ui.MyGymEvolutionApp
-import com.juanferdev.mygymevolution.ui.theme.AppTheme
+import androidx.appcompat.app.AppCompatActivity
+import com.juanferdev.feature.features.home.HomeActivity
 
-class MainActivity : ComponentActivity() {
+class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent {
-            AppTheme {
-                MyGymEvolutionApp()
-            }
-        }
+        startActivity(Intent(this, HomeActivity::class.java))
     }
 }
 

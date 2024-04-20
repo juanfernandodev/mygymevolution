@@ -10,26 +10,32 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.juanferdev.core.data.musclegroup.models.MuscleGroupModel
+import com.juanferdev.core.data.musclegroup.repositories.LocalStoreStatus
 import com.juanferdev.feature.features.home.TopLevelDestination
 import com.juanferdev.feature.features.musclegroups.screen.MuscleGroupsScreen
+import com.juanferdev.feature.features.musclegroups.stateholder.MuscleGroupsViewModel
 import com.juanferdev.feature.features.settings.screen.SettingsScreen
 
-@Preview
+
 @Composable
-fun HomeScreen() {
+fun HomeScreen(muscleGroupsViewModel: MuscleGroupsViewModel) {
+
+    val localStoreMuscleGroups = muscleGroupsViewModel.uiState.value
+
     val navHostController = rememberNavController()
     Scaffold(
         bottomBar = { BottomNavigationBar(navHostController) }
     ) { paddingValues ->
         HomeNavHost(
             navHostController = navHostController,
-            paddingValues = paddingValues
+            paddingValues = paddingValues,
+            localStoreStatus = localStoreMuscleGroups
         )
 
     }
@@ -55,6 +61,7 @@ private fun BottomNavigationBar(navController: NavHostController, modifier: Modi
 
 @Composable
 fun HomeNavHost(
+    localStoreStatus: LocalStoreStatus<List<MuscleGroupModel>>,
     navHostController: NavHostController,
     paddingValues: PaddingValues
 ) {
@@ -64,7 +71,7 @@ fun HomeNavHost(
         modifier = Modifier.padding(paddingValues)
     ) {
         composable(route = TopLevelDestination.HOME.titleText) {
-            MuscleGroupsScreen()
+            MuscleGroupsScreen(localStoreStatus)
         }
         composable(route = TopLevelDestination.SETTINGS.titleText) {
             SettingsScreen()
