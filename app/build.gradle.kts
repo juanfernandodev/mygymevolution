@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     kotlin("kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -31,11 +32,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = "17"
+        jvmTarget = "1.8"
     }
     buildFeatures {
         compose = true
@@ -51,11 +52,13 @@ android {
 }
 
 dependencies {
-    val activityCompose = "1.8.2"
+    val appcompatVersion = "1.6.1"
+    implementation("androidx.appcompat:appcompat:$appcompatVersion")
+    val activityCompose = "1.9.0"
     val navigationComposeVersion = "2.7.7"
     val composeBom = platform("androidx.compose:compose-bom:2024.01.00")
-    val composeVersion = "1.6.1"
-    val coreKtx = "1.12.0"
+    val composeVersion = "1.6.6"
+    val coreKtx = "1.13.0"
     val lifecycleRuntime = "2.7.0"
 
     implementation(project(":feature"))
@@ -74,6 +77,10 @@ dependencies {
     androidTestImplementation(composeBom)
     debugImplementation("androidx.compose.ui:ui-tooling")
 
+    //Hilt
+    val versionHilt = "2.50"
+    implementation("com.google.dagger:hilt-android:$versionHilt")
+    kapt("com.google.dagger:hilt-android-compiler:$versionHilt")
 }
 
 // Allow references to generated code
