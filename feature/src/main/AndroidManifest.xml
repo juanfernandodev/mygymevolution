@@ -3,7 +3,12 @@
 
     <application>
         <activity
-            android:name=".features.home.HomeActivity"
+            android:name=".addmusclegroup.AddMuscleGroupActivity"
+            android:exported="false"
+            android:label="@string/title_activity_add_muscle_group"
+            android:theme="@style/Theme.MyGymEvolution" />
+        <activity
+            android:name=".home.HomeActivity"
             android:exported="false"
             android:label="@string/title_activity_home"
             android:theme="@style/Theme.MyGymEvolution" />

@@ -24,7 +24,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.juanferdev.feature.features.home.HomeActivity"
+            android:name="com.juanferdev.feature.home.HomeActivity"
             android:exported="false"
             android:theme="@style/Theme.MyGymEvolution" />
     </application>

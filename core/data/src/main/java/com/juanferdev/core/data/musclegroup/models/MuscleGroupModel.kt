@@ -7,7 +7,7 @@ import org.jetbrains.annotations.NotNull
 
 @Entity
 data class MuscleGroupModel(
-    @PrimaryKey(autoGenerate = true) val id: Int,
+    @PrimaryKey(autoGenerate = true) val id: Int = 0,
     @NotNull @ColumnInfo("name") val name: String,
     @ColumnInfo("image") val image: String = String(),
     @NotNull @ColumnInfo("lastModification") val lastModification: String = String()

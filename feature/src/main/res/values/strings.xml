@@ -5,4 +5,8 @@
     <string name="try_again">Try Again</string>
     <string name="there_was_error">There was an error</string>
     <string name="there_are_not_muscle_group">Looks like You have not added any Muscle Group, please go to Add.</string>
+    <string name="title_activity_add_muscle_group">AddMuscleGroupActivity</string>
+    <string name="muscle_group_saved">Muscle Group saved!</string>
+    <string name="name_muscle_group">Name Muscle Group</string>
+    <string name="save">Save</string>
 </resources>

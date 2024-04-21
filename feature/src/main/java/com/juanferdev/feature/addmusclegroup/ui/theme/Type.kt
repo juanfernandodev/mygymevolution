@@ -1,4 +1,4 @@
-package com.juanferdev.feature.features.home.ui.theme
+package com.juanferdev.feature.addmusclegroup.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
