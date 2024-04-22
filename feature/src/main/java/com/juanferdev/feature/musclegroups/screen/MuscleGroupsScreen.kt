@@ -14,8 +14,6 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Create
-import androidx.compose.material3.FloatingActionButton
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -29,6 +27,7 @@ import com.juanferdev.core.data.musclegroup.models.MuscleGroupModel
 import com.juanferdev.core.data.musclegroup.repositories.LocalStoreStatus
 import com.juanferdev.feature.R
 import com.juanferdev.feature.composables.ErrorDialog
+import com.juanferdev.feature.composables.FloatingActionButton
 import com.juanferdev.feature.features.composables.LoadingWheel
 
 
@@ -47,7 +46,10 @@ fun MuscleGroupsScreen(
         is LocalStoreStatus.Success -> {
             val listMuscleGroup = localStoreStatus.data
             if (listMuscleGroup.isNotEmpty()) {
-                BoxMuscleGroupList(localStoreStatus.data)
+                BoxMuscleGroupList(
+                    localStoreStatus.data,
+                    goToAddMuscleGroup = goToAddMuscleGroup
+                )
             } else {
                 ErrorDialog(
                     errorMessageId = R.string.there_are_not_muscle_group,
@@ -60,7 +62,10 @@ fun MuscleGroupsScreen(
 }
 
 @Composable
-private fun BoxMuscleGroupList(muscleGroupList: List<MuscleGroupModel>) {
+private fun BoxMuscleGroupList(
+    muscleGroupList: List<MuscleGroupModel>,
+    goToAddMuscleGroup: () -> Unit
+) {
     Surface(
         modifier = Modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.background
@@ -80,11 +85,17 @@ private fun BoxMuscleGroupList(muscleGroupList: List<MuscleGroupModel>) {
                     )
                 }
             }
-            AddMuscleGroupFAB(
+            FloatingActionButton(
                 modifier = Modifier
                     .align(Alignment.BottomEnd)
-                    .padding(end = 10.dp, bottom = 20.dp)
-            ) {}
+                    .padding(end = 10.dp, bottom = 20.dp),
+                icon = Icons.Filled.Create,
+                contentDescriptionId = R.string.button_to_add_new_muscle_group
+            ) {
+                goToAddMuscleGroup()
+            }
+
+
         }
 
     }
@@ -105,15 +116,6 @@ private fun BoxMuscleGroup(muscle: String, modifier: Modifier = Modifier) {
     }
 }
 
-@Composable
-fun AddMuscleGroupFAB(modifier: Modifier, onClick: () -> Unit) {
-    FloatingActionButton(
-        modifier = modifier,
-        onClick = { onClick() },
-    ) {
-        Icon(Icons.Filled.Create, "Button to add new muscle group.")
-    }
-}
 
 @Preview
 @Composable
@@ -128,5 +130,5 @@ fun Preview() {
         MuscleGroupModel(id = 1, name = "Biceps")
     )
 
-    BoxMuscleGroupList(muscleGroupList)
+    BoxMuscleGroupList(muscleGroupList) {}
 }
