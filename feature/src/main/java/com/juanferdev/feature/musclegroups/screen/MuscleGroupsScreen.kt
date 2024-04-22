@@ -9,12 +9,10 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Create
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
@@ -99,17 +97,10 @@ private fun BoxMuscleGroup(muscle: String, modifier: Modifier = Modifier) {
             .background(color = MaterialTheme.colorScheme.background)
             .clickable { }
     ) {
-        Icon(
-            imageVector = Icons.Filled.Check,
-            contentDescription = "Check mark",
-            modifier = modifier
-                .align(Alignment.Center)
-                .fillMaxSize()
-        )
         Text(
             muscle,
-            fontSize = 16.sp,
-            modifier = modifier.wrapContentHeight(Alignment.Bottom)
+            fontSize = 24.sp,
+            modifier = Modifier.align(Alignment.Center)
         )
     }
 }
