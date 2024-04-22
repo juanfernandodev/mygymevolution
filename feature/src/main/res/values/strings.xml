@@ -9,4 +9,5 @@
     <string name="muscle_group_saved">Muscle Group saved!</string>
     <string name="name_muscle_group">Name Muscle Group</string>
     <string name="save">Save</string>
+    <string name="button_to_add_new_muscle_group">Button to add new muscle group.</string>
 </resources>
