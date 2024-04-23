@@ -22,6 +22,7 @@ class MuscleGroupsViewModel @Inject constructor(
 
     fun getListMuscleGroup() {
         viewModelScope.launch {
+            uiState.value = LocalStoreStatus.Loading()
             uiState.value = muscleGroupRepository.getAllMuscleGroup()
         }
     }
