@@ -15,17 +15,12 @@ class MuscleGroupsViewModel @Inject constructor(
     private val muscleGroupRepository: MuscleGroupRepository
 ) : ViewModel() {
 
-
     var uiState =
         mutableStateOf<LocalStoreStatus<List<MuscleGroupModel>>>(LocalStoreStatus.Loading())
         private set
 
 
-    init {
-        getListMuscleGroup()
-    }
-
-    private fun getListMuscleGroup() {
+    fun getListMuscleGroup() {
         viewModelScope.launch {
             uiState.value = muscleGroupRepository.getAllMuscleGroup()
         }
