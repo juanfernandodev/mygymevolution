@@ -19,8 +19,8 @@ import com.juanferdev.core.data.musclegroup.models.MuscleGroupModel
 import com.juanferdev.core.data.musclegroup.repositories.LocalStoreStatus
 import com.juanferdev.feature.features.home.TopLevelDestination
 import com.juanferdev.feature.features.musclegroups.stateholder.MuscleGroupsViewModel
-import com.juanferdev.feature.features.settings.screen.SettingsScreen
 import com.juanferdev.feature.musclegroups.screen.MuscleGroupsScreen
+import com.juanferdev.feature.settings.screen.SettingsScreen
 
 
 @Composable
