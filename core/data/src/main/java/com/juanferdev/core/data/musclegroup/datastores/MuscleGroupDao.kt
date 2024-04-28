@@ -5,17 +5,18 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import com.juanferdev.core.data.musclegroup.models.MuscleGroupModel
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface MuscleGroupDao {
 
     @Query("SELECT * FROM musclegroupmodel")
-    fun getAll(): List<MuscleGroupModel>
+    fun getAll(): Flow<List<MuscleGroupModel>>
 
     @Insert
-    fun insert(muscleGroupModel: MuscleGroupModel)
+    suspend fun insert(muscleGroupModel: MuscleGroupModel)
 
 
     @Delete
-    fun delete(muscleGroupModel: MuscleGroupModel)
+    suspend fun delete(muscleGroupModel: MuscleGroupModel)
 }

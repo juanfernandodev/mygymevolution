@@ -27,11 +27,6 @@ class HomeActivity : ComponentActivity() {
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-        muscleGroupsViewModel.getListMuscleGroup()
-    }
-
     private fun goToAddMuscleGroup() {
         startActivity(Intent(this, AddMuscleGroupActivity::class.java))
     }

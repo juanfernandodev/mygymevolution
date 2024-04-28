@@ -23,7 +23,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.juanferdev.core.data.musclegroup.models.MuscleGroupModel
+import com.juanferdev.core.data.musclegroup.dto.MuscleGroupDTO
 import com.juanferdev.core.data.musclegroup.repositories.LocalStoreStatus
 import com.juanferdev.feature.R
 import com.juanferdev.feature.composables.ErrorDialog
@@ -33,7 +33,7 @@ import com.juanferdev.feature.features.composables.LoadingWheel
 
 @Composable
 fun MuscleGroupsScreen(
-    localStoreStatus: LocalStoreStatus<List<MuscleGroupModel>>,
+    localStoreStatus: LocalStoreStatus<List<MuscleGroupDTO>>,
     goToAddMuscleGroup: () -> Unit
 ) {
 
@@ -69,7 +69,7 @@ fun MuscleGroupsScreen(
 
 @Composable
 private fun BoxMuscleGroupList(
-    muscleGroupList: List<MuscleGroupModel>,
+    muscleGroupList: List<MuscleGroupDTO>,
     goToAddMuscleGroup: () -> Unit
 ) {
     Surface(
@@ -128,12 +128,12 @@ private fun BoxMuscleGroup(muscle: String, modifier: Modifier = Modifier) {
 fun Preview() {
 
     val muscleGroupList = listOf(
-        MuscleGroupModel(id = 1, name = "Quadriceps"),
-        MuscleGroupModel(id = 1, name = "Adductors"),
-        MuscleGroupModel(id = 1, name = "Femoral"),
-        MuscleGroupModel(id = 1, name = "Gluteus"),
-        MuscleGroupModel(id = 1, name = "Triceps"),
-        MuscleGroupModel(id = 1, name = "Biceps")
+        MuscleGroupDTO(id = 1, name = "Quadriceps"),
+        MuscleGroupDTO(id = 1, name = "Adductors"),
+        MuscleGroupDTO(id = 1, name = "Femoral"),
+        MuscleGroupDTO(id = 1, name = "Gluteus"),
+        MuscleGroupDTO(id = 1, name = "Triceps"),
+        MuscleGroupDTO(id = 1, name = "Biceps")
     )
 
     BoxMuscleGroupList(muscleGroupList) {}
