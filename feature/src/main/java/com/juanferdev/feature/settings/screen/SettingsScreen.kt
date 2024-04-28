@@ -40,11 +40,11 @@ fun SettingsScreen(
 
     val modalitiesList = settingsViewModel.uiStateFlowModalities.collectAsStateWithLifecycle().value
 
-    val uiStateSave = settingsViewModel.uiStateSave.value
+    val uiStateSave = settingsViewModel.uiStateSave
 
-    if (uiStateSave is LocalStoreStatus.Error) {
+    if (uiStateSave.value is LocalStoreStatus.Error) {
         ErrorDialog(errorMessageId = R.string.there_was_error) {
-
+            uiStateSave.value = LocalStoreStatus.Completed()
         }
     }
 

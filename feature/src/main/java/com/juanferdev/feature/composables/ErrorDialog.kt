@@ -20,11 +20,14 @@ fun ErrorDialog(
             Text(text = stringResource(id = errorMessageId))
         },
         onDismissRequest = {
-
+            onDialogDismiss.invoke()
         },
         confirmButton = {
             Button(
-                onClick = { onDialogDismiss.invoke() }
+                onClick = {
+                    onDialogDismiss()
+
+                }
             ) {
                 Text(stringResource(id = R.string.try_again))
             }
