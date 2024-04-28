@@ -23,10 +23,12 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.juanferdev.core.data.modality.dto.ModalityDTO
+import com.juanferdev.feature.R
 import com.juanferdev.feature.settings.stateholder.SettingsViewModel
 
 @Composable
@@ -44,7 +46,7 @@ fun SettingsScreen(
 
         val modalityToAdd = remember { mutableStateOf(String()) }
         Text(
-            "Administrate your app",
+            stringResource(R.string.administrate_your_app),
             modifier = Modifier
                 .padding(bottom = 20.dp)
                 .align(Alignment.CenterHorizontally)
@@ -54,12 +56,15 @@ fun SettingsScreen(
                 modifier = Modifier.weight(0.5f),
                 value = modalityToAdd.value,
                 onValueChange = { newValue -> modalityToAdd.value = newValue },
-                placeholder = { Text(text = "Add exercise modalities") }
+                placeholder = { Text(text = stringResource(R.string.add_exercise_modalities)) }
             )
             IconButton(
                 onClick = { settingsViewModel.saveModality(modalityToAdd.value) }
             ) {
-                Icon(Icons.Outlined.Add, contentDescription = "Localized description")
+                Icon(
+                    Icons.Outlined.Add,
+                    contentDescription = stringResource(R.string.localized_description)
+                )
             }
         }
 
