@@ -81,17 +81,19 @@ dependencies {
     val navigationComposeVersion = "2.7.7"
     implementation("androidx.navigation:navigation-compose:$navigationComposeVersion")
 
+    //Hilt
+    val versionHilt = "2.50"
+    val hiltNavigation = "1.2.0"
+    implementation("com.google.dagger:hilt-android:$versionHilt")
+    implementation("androidx.hilt:hilt-navigation-compose:${hiltNavigation}")
+    kapt("com.google.dagger:hilt-android-compiler:$versionHilt")
+
     //Room
     val roomVersion = "2.6.1"
     implementation("androidx.room:room-runtime:$roomVersion")
     //Kotlin Extensions and Coroutines support for Room
     implementation("androidx.room:room-ktx:$roomVersion")
     annotationProcessor("androidx.room:room-compiler:$roomVersion")
-
-    //Hilt
-    val versionHilt = "2.50"
-    implementation("com.google.dagger:hilt-android:$versionHilt")
-    kapt("com.google.dagger:hilt-android-compiler:$versionHilt")
 
     //Compose Test
     androidTestImplementation(composeBom)

@@ -36,6 +36,8 @@ fun MuscleGroupsScreen(
     localStoreStatus: LocalStoreStatus<List<MuscleGroupModel>>,
     goToAddMuscleGroup: () -> Unit
 ) {
+
+
     when (localStoreStatus) {
         is LocalStoreStatus.Error ->
             ErrorDialog(
@@ -57,6 +59,10 @@ fun MuscleGroupsScreen(
                 )
             }
 
+        }
+
+        is LocalStoreStatus.Completed -> {
+            //All is completed
         }
     }
 }

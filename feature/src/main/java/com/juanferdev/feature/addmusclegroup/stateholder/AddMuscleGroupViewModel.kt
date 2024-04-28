@@ -14,7 +14,7 @@ class AddMuscleGroupViewModel @Inject constructor(
     private val muscleGroupRepository: MuscleGroupRepository
 ) : ViewModel() {
 
-    var uiState = mutableStateOf<LocalStoreStatus<Any>?>(null)
+    var uiState = mutableStateOf<LocalStoreStatus<Any>>(LocalStoreStatus.Completed())
         private set
 
 
@@ -25,7 +25,4 @@ class AddMuscleGroupViewModel @Inject constructor(
         }
     }
 
-    fun resetUiState() {
-        uiState.value = null
-    }
 }

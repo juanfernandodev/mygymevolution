@@ -39,7 +39,9 @@ fun AddMuscleGroupScreen(
         is LocalStoreStatus.Error -> ErrorDialog(errorMessageId = uiStatus.messageId) { }
         is LocalStoreStatus.Loading -> LoadingWheel()
         is LocalStoreStatus.Success -> onSuccess()
-        null -> addMuscleGroupViewModel.resetUiState()
+        is LocalStoreStatus.Completed -> {
+            //All is completed
+        }
     }
 }
 
