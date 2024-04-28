@@ -4,6 +4,7 @@ package com.juanferdev.core.data.di
 import android.content.Context
 import androidx.room.Room
 import com.juanferdev.core.data.database.AppDatabase
+import com.juanferdev.core.data.modality.datastores.ModalityDao
 import com.juanferdev.core.data.musclegroup.datastores.MuscleGroupDao
 import dagger.Module
 import dagger.Provides
@@ -28,5 +29,10 @@ object DatabaseModule {
     @Provides
     fun provideMovieDao(appDatabase: AppDatabase): MuscleGroupDao {
         return appDatabase.muscleGroupDao()
+    }
+
+    @Provides
+    fun provideModalityDao(appDatabase: AppDatabase): ModalityDao {
+        return appDatabase.modalityDao()
     }
 }

@@ -7,7 +7,7 @@ import kotlinx.coroutines.withContext
 
 suspend fun <T> makeLocalStoreCall(
     dispatcher: CoroutineDispatcher,
-    call: (() -> T)
+    call: (suspend () -> T)
 ): LocalStoreStatus<T> =
     withContext(dispatcher) {
         try {
@@ -18,3 +18,7 @@ suspend fun <T> makeLocalStoreCall(
             LocalStoreStatus.Error(R.string.there_was_error)
         }
     }
+
+
+
+

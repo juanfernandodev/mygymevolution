@@ -7,4 +7,6 @@ sealed class LocalStoreStatus<T> {
     class Error<T>(val messageId: Int) : LocalStoreStatus<T>()
 
     class Loading<T> : LocalStoreStatus<T>()
+
+    class Completed<T> : LocalStoreStatus<T>()
 }

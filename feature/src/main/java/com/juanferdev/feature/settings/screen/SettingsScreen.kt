@@ -23,21 +23,19 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.juanferdev.core.data.modality.dto.ModalityDTO
+import com.juanferdev.feature.settings.stateholder.SettingsViewModel
 
-@Preview(showBackground = true)
 @Composable
 fun SettingsScreen(
-    listModality: List<String> = listOf(
-        "pesas",
-        "mancuernas",
-        "barra",
-        "Discos",
-        "Otro",
-        "Otro"
-    )
+    settingsViewModel: SettingsViewModel = hiltViewModel()
 ) {
+
+    val modalitiesList = settingsViewModel.uiStateFlowModalities.collectAsStateWithLifecycle().value
+
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -59,7 +57,7 @@ fun SettingsScreen(
                 placeholder = { Text(text = "Add exercise modalities") }
             )
             IconButton(
-                onClick = { /*TODO*/ }
+                onClick = { settingsViewModel.saveModality(modalityToAdd.value) }
             ) {
                 Icon(Icons.Outlined.Add, contentDescription = "Localized description")
             }
@@ -69,7 +67,7 @@ fun SettingsScreen(
             columns = GridCells.Fixed(count = 3),
             horizontalArrangement = Arrangement.Center
         ) {
-            items(listModality) {
+            items(modalitiesList) {
                 InputChipExample(it)
             }
 
@@ -82,14 +80,14 @@ fun SettingsScreen(
 
 @Composable
 fun InputChipExample(
-    text: String
+    modalityDTO: ModalityDTO
 ) {
     Surface(
         modifier = Modifier.padding(top = 5.dp, bottom = 5.dp)
     ) {
         InputChip(
             onClick = {},
-            label = { Text(text) },
+            label = { Text(modalityDTO.name) },
             selected = true,
             modifier = Modifier
                 .wrapContentHeight()
