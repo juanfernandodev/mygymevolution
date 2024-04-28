@@ -10,12 +10,13 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.juanferdev.core.data.musclegroup.models.MuscleGroupModel
+import com.juanferdev.core.data.musclegroup.dto.MuscleGroupDTO
 import com.juanferdev.core.data.musclegroup.repositories.LocalStoreStatus
 import com.juanferdev.feature.features.home.TopLevelDestination
 import com.juanferdev.feature.features.musclegroups.stateholder.MuscleGroupsViewModel
@@ -29,7 +30,8 @@ fun HomeScreen(
     goToAddMuscleGroup: () -> Unit
 ) {
 
-    val localStoreMuscleGroups = muscleGroupsViewModel.uiState.value
+    val localStoreMuscleGroups =
+        muscleGroupsViewModel.uiStateFlow.collectAsStateWithLifecycle().value
 
     val navHostController = rememberNavController()
     Scaffold(
@@ -65,7 +67,7 @@ private fun BottomNavigationBar(navController: NavHostController, modifier: Modi
 
 @Composable
 fun HomeNavHost(
-    localStoreStatus: LocalStoreStatus<List<MuscleGroupModel>>,
+    localStoreStatus: LocalStoreStatus<List<MuscleGroupDTO>>,
     navHostController: NavHostController,
     paddingValues: PaddingValues,
     goToAddMuscleGroup: () -> Unit

@@ -28,7 +28,9 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.juanferdev.core.data.modality.dto.ModalityDTO
+import com.juanferdev.core.data.musclegroup.repositories.LocalStoreStatus
 import com.juanferdev.feature.R
+import com.juanferdev.feature.composables.ErrorDialog
 import com.juanferdev.feature.settings.stateholder.SettingsViewModel
 
 @Composable
@@ -37,6 +39,14 @@ fun SettingsScreen(
 ) {
 
     val modalitiesList = settingsViewModel.uiStateFlowModalities.collectAsStateWithLifecycle().value
+
+    val uiStateSave = settingsViewModel.uiStateSave.value
+
+    if (uiStateSave is LocalStoreStatus.Error) {
+        ErrorDialog(errorMessageId = R.string.there_was_error) {
+
+        }
+    }
 
     Column(
         modifier = Modifier
